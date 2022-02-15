@@ -146,8 +146,43 @@ function ChatApp(props) {
 
         <div className={clsx('ChatApp-contentCardWrapper', 'container')}>
           <div className={clsx('ChatApp-contentCard', 'shadow rounded-20')}>
-         
-           
+            <Hidden mdUp>
+              <StyledSwipeableDrawer
+                className="h-full absolute z-20"
+                variant="temporary"
+                anchor="left"
+                open={mobileChatsSidebarOpen}
+                onOpen={(ev) => {}}
+                onClose={() => dispatch(closeMobileChatsSidebar())}
+                disableSwipeToOpen
+                classes={{
+                  paper: 'absolute ltr:left-0 rtl:right-0',
+                }}
+                style={{ position: 'absolute' }}
+                ModalProps={{
+                  keepMounted: true,
+                  disablePortal: true,
+                  BackdropProps: {
+                    classes: {
+                      root: 'absolute',
+                    },
+                  },
+                }}
+              >
+                <ChatsSidebar />
+              </StyledSwipeableDrawer>
+            </Hidden>
+            <Hidden mdDown>
+              <StyledSwipeableDrawer
+                className="h-full z-20"
+                variant="permanent"
+                open
+                onOpen={(ev) => {}}
+                onClose={(ev) => {}}
+              >
+                <ChatsSidebar />
+              </StyledSwipeableDrawer>
+            </Hidden>
             <StyledSwipeableDrawer
               className="h-full absolute z-30"
               variant="temporary"
